@@ -1,0 +1,26 @@
+{
+    "name": "jamesgpearce/modernizr-server",
+    "type": "library",
+    "description": "Combined browser- & feature-detection for your app",
+    "keywords": ["useragent", "user-agent", "detector", "device", "YABFDL", "modernizr-server", "feature detection"],
+    "homepage": "https://github.com/jamesgpearce/modernizr-server/",
+    "license": "MIT",
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "authors": [
+        {
+            "name": "Dave Olsen",
+            "email": "dmolsen@gmail.com",
+            "homepage": "https://github.com/jamesgpearce/"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Modernizr\\": "src/"
+        }
+    }
+}
