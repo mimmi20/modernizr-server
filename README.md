@@ -13,26 +13,37 @@ first place.
 The modernizr-server library is a way to bring Modernizr browser data to your
 server scripting environment. For example, in PHP:
 
-    <?php
+```php
+<?php
 
-        include('modernizr-server.php');
-    
-        print 'The server knows:';
-        foreach($modernizr as $feature=>$value) {
-            print "<br/> $feature: "; print_r($value);
-        }
+use Modernizr\Modernizr;
 
-    ?>
+Modernizr::init();
 
-    The server knows:
-    canvas: 1
-    canvastext: 1
-    geolocation: 1
-    crosswindowmessaging: 1
-    websqldatabase: 1
-    indexeddb: 0
-    hashchange: 1
-    ...
+if (null === Modernizr::getData()) {
+    print "<html><head><script type='text/javascript'>";
+    print Modernizr::buildJsCode() . "</script></head><body></body></html>";
+    exit;
+}
+
+print 'The server knows:';
+foreach (Modernizr::getData() as $feature => $value) {
+    print "<br/> $feature: ";
+    print_r($value);
+}
+
+?>
+```
+
+The server knows:
+canvas: 1
+canvastext: 1
+geolocation: 1
+crosswindowmessaging: 1
+websqldatabase: 1
+indexeddb: 0
+hashchange: 1
+...
 
 Exactly the same feature detection is available through this (PHP) API on the
 server as is available through the (Javascript) API on the client.
