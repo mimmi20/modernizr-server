@@ -69,14 +69,16 @@ class Modernizr
     public static function buildJsCode()
     {
         $js  = file_get_contents(__DIR__ . '/' . self::$modernizr_js);
-        $js .= file_get_contents('web/tests.demo.js');
+        $js .= file_get_contents('src/web/tests.demo.js');
+        $js .= file_get_contents('src/web/convert.js');
+        /*
         $js .= "var m=Modernizr,c='';"
             . "for(var f in m){if(f[0]=='_'){continue;}"
             . "var t=typeof m[f];if(t=='function'){continue;}c+=(c?'|':'"
             . self::$key . "=')+f+':';if(t=='object'){for(var s in m[f]){"
             . "c+='/'+s+':'+(m[f][s]?'1':'0');}}else{c+=m[f]?'1':'0';}}"
-            . "c+=';path=/';try{document.cookie=c;document.location.reload();}catch(e){}";
-
+            . "c+=';path=/';alert(c);try{document.cookie=c;document.location.reload();}catch(e){}";
+/**/
         return $js;
     }
 
@@ -110,5 +112,4 @@ class Modernizr
 
         return $data;
     }
-
 }
