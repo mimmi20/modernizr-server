@@ -70,7 +70,7 @@ class Modernizr
     public static function buildJsCode()
     {
         $js  = self::buildJs();
-        $js .= file_get_contents('src/web/convert.js');
+        $js .= file_get_contents(__DIR__ . '/web/convert.js');
 
         return $js;
     }
@@ -83,7 +83,7 @@ class Modernizr
     public static function buildJs()
     {
         $js  = file_get_contents(__DIR__ . '/' . self::$modernizr_js);
-        $js .= file_get_contents('src/web/tests.js');
+        $js .= file_get_contents(__DIR__ . '/web/tests.js');
 
         return $js;
     }
