@@ -62,15 +62,28 @@ class Modernizr
     }
 
     /**
-     * builds the javascript code
+     * builds the complete javascript code to output modernizr.js, new checkes and
+     * to write the detection result into the session
      *
      * @return string
      */
     public static function buildJsCode()
     {
+        $js  = self::buildJs();
+        $js .= file_get_contents('src/web/convert.js');
+
+        return $js;
+    }
+
+    /**
+     * builds the javascript code to output modernizr.js and new checkes
+     *
+     * @return string
+     */
+    public static function buildJs()
+    {
         $js  = file_get_contents(__DIR__ . '/' . self::$modernizr_js);
         $js .= file_get_contents('src/web/tests.js');
-        $js .= file_get_contents('src/web/convert.js');
 
         return $js;
     }
