@@ -70,7 +70,7 @@ class Modernizr
     public static function buildJsCode()
     {
         $js  = self::buildJs();
-        $js .= file_get_contents(__DIR__ . '/web/convert.js');
+        $js .= self::buildConvertJs(self::$key, '', true);
 
         return $js;
     }
@@ -86,6 +86,24 @@ class Modernizr
         $js .= file_get_contents(__DIR__ . '/web/tests.js');
 
         return $js;
+    }
+
+    /**
+     * builds the javascript code to write the detection result into a cookie
+     *
+     * @param string $key
+     * @param string $cookieExtra
+     * @param bool   $reload
+     *
+     * @return string
+     */
+    public static function buildConvertJs($key, $cookieExtra = '', $reload = true)
+    {
+        return str_replace(
+            array('###Modernizr###', '###EXTRA###', 'reload = true'),
+            array($key, $cookieExtra, ($reload ? 'reload = true' : 'reload = false')),
+            file_get_contents(__DIR__ . '/web/convert.js')
+        );
     }
 
     /**
