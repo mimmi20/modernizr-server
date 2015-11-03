@@ -34,4 +34,3 @@ foreach (Modernizr::getData() as $feature => $value) {
     print "<br/> $feature: ";
     print_r($value);
 }
-?>
