@@ -83,7 +83,19 @@ class Modernizr
     public static function buildJs()
     {
         $js  = file_get_contents(__DIR__ . '/' . self::$modernizr_js);
-        $js .= file_get_contents(__DIR__ . '/web/tests.js');
+
+        $sourceDirectory = __DIR__ . '/web/tests/';
+
+        $iterator = new \RecursiveDirectoryIterator($sourceDirectory);
+
+        foreach (new \RecursiveIteratorIterator($iterator) as $file) {
+            /** @var $file \SplFileInfo */
+            if (!$file->isFile() || $file->getExtension() !== 'js') {
+                continue;
+            }
+
+            $js .= file_get_contents($file->getPathname());
+        }
 
         return $js;
     }
