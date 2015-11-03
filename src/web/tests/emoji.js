@@ -1,7 +1,8 @@
 // Requires a Modernizr build with `canvastext` included
 // http://www.modernizr.com/download/#-canvas-canvastext
 Modernizr.addTest('extended-emoji', function () {
-    if (!Modernizr.canvastext) return false;
+    if (!Modernizr.canvastext) {
+        return false; }
     var node = document.createElement('canvas'),
         ctx = node.getContext('2d');
     ctx.textBaseline = 'top';

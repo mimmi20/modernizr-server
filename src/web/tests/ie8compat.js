@@ -6,6 +6,6 @@
 // related:
 // james.padolsey.com/javascript/detect-ie-in-js-using-conditional-comments/
 
-Modernizr.addTest('ps-ie8compat',function(){
+Modernizr.addTest('ps-ie8compat',function () {
     return (!window.addEventListener && document.documentMode && document.documentMode === 7);
 });

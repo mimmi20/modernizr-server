@@ -15,7 +15,7 @@ for (var f in m) {
 
     var t = typeof m[f];
 
-    if (t === 'function'){
+    if (t === 'function') {
         continue;
     }
 
@@ -40,7 +40,7 @@ for (var f in m) {
     }
 }
 
-try{
+try {
     document.cookie=c;
 
     if (reload) {
