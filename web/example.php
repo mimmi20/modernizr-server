@@ -21,8 +21,6 @@ if (!$foundVendorAutoload) {
 
 use Modernizr\Modernizr;
 
-Modernizr::init();
-
 if (null === Modernizr::getData()) {
     print "<html><head><script type='text/javascript'>";
     print Modernizr::buildJsCode() . "</script></head><body></body></html>";

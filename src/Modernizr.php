@@ -14,7 +14,7 @@ class Modernizr
      * the used session key
      * @var string
      */
-    private static $key = 'Modernizr';
+    const KEY = 'Modernizr';
 
     /**
      * the detected features
@@ -24,37 +24,29 @@ class Modernizr
     private static $data = array();
 
     /**
-     * initializes the class and the data
-     */
-    public static function init()
-    {
-        $key = self::$key;
-
-        if (PHP_SESSION_ACTIVE === session_status() && isset($_SESSION[$key])) {
-            self::$data = $_SESSION[$key];
-
-            return;
-        }
-
-        if (isset($_COOKIE) && isset($_COOKIE[$key])) {
-            self::$data = self::ang($_COOKIE[$key]);
-
-            if (isset($_SESSION)) {
-                $_SESSION[$key] = self::$data;
-            }
-
-            return;
-        }
-    }
-
-    /**
      * returns the data
+     *
+     * @param string $key
      *
      * @return array|null
      */
-    public static function getData()
+    public static function getData($key = self::KEY)
     {
         if (empty(self::$data)) {
+            if (PHP_SESSION_ACTIVE === session_status() && isset($_SESSION[$key])) {
+                self::$data = $_SESSION[$key];
+            }
+
+            if (isset($_COOKIE) && isset($_COOKIE[$key])) {
+                self::$data = self::ang($_COOKIE[$key]);
+
+                if (isset($_SESSION)) {
+                    $_SESSION[$key] = self::$data;
+                }
+
+                return self::$data;
+            }
+
             return null;
         }
 
@@ -70,7 +62,7 @@ class Modernizr
     public static function buildJsCode()
     {
         $js  = self::buildJs();
-        $js .= self::buildConvertJs(self::$key, '', true);
+        $js .= self::buildConvertJs(self::KEY, '', true);
 
         return $js;
     }
