@@ -32,25 +32,27 @@ class Modernizr
      */
     public static function getData($key = self::KEY)
     {
-        if (empty(self::$data)) {
-            if (PHP_SESSION_ACTIVE === session_status() && isset($_SESSION[$key])) {
-                self::$data = $_SESSION[$key];
-            }
-
-            if (isset($_COOKIE) && isset($_COOKIE[$key])) {
-                self::$data = self::ang($_COOKIE[$key]);
-
-                if (isset($_SESSION)) {
-                    $_SESSION[$key] = self::$data;
-                }
-
-                return self::$data;
-            }
-
-            return null;
+        if (!empty(self::$data)) {
+            return self::$data;
         }
 
-        return self::$data;
+        if (PHP_SESSION_ACTIVE === session_status() && isset($_SESSION[$key])) {
+            self::$data = $_SESSION[$key];
+
+            return self::$data;
+        }
+
+        if (isset($_COOKIE) && isset($_COOKIE[$key])) {
+            self::$data = self::ang($_COOKIE[$key]);
+
+            if (isset($_SESSION)) {
+                $_SESSION[$key] = self::$data;
+            }
+
+            return self::$data;
+        }
+
+        return null;
     }
 
     /**

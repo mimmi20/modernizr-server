@@ -2,7 +2,7 @@
  * Created by Thomas Müller on 24.10.2015.
  */
 
-var m = Modernizr, c = '', reload = true;
+var m = Modernizr, c = '', cx = '', reload = true;
 
 for (var f in m) {
     if (!m.hasOwnProperty(f)) {
@@ -38,10 +38,16 @@ for (var f in m) {
     } else {
         c += m[f];
     }
+
+    cx = c + '; path=/';
+
+    document.cookie = cx;
 }
 
+c += '; path=/';
+
 try {
-    document.cookie=c;
+    document.cookie = c;
 
     if (reload) {
         document.location.reload();
