@@ -129,8 +129,8 @@ class Modernizr
             if ($value[0] === '/') {
                 $valueObject = new \stdClass();
 
-                foreach (explode('/', substr($value, 1)) as $sub_feature) {
-                    list($subName, $subValue) = explode(':', $sub_feature, 2);
+                foreach (explode('/', substr($value, 1)) as $subFeature) {
+                    list($subName, $subValue) = explode(':', $subFeature, 2);
 
                     $valueObject->$subName = $subValue;
                 }
