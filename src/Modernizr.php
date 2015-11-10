@@ -27,14 +27,17 @@ class Modernizr
      * returns the data
      *
      * @param string $key
+     * @param string $cookieExtra
      *
      * @return array|null
      */
-    public static function getData($key = self::KEY)
+    public static function getData($key = self::KEY, $cookieExtra = '')
     {
         if (!empty(self::$data)) {
             return self::$data;
         }
+
+        $key .= $cookieExtra;
 
         if (PHP_SESSION_ACTIVE === session_status() && isset($_SESSION[$key])) {
             self::$data = $_SESSION[$key];
@@ -59,12 +62,14 @@ class Modernizr
      * builds the complete javascript code to output modernizr.js, new checkes and
      * to write the detection result into the session
      *
+     * @param string $cookieExtra
+     *
      * @return string
      */
-    public static function buildJsCode()
+    public static function buildJsCode($cookieExtra = '')
     {
         $js  = self::buildJs();
-        $js .= self::buildConvertJs(self::KEY, '', true);
+        $js .= self::buildConvertJs(self::KEY, $cookieExtra, true);
 
         return $js;
     }
