@@ -1,6 +1,8 @@
 // IE8 compat mode aka Fake IE7
 // by Erich Ocean
 
+"use strict";
+
 // In this case, IE8 will be acting as IE7. You may choose to remove features in this case.
 
 // related:

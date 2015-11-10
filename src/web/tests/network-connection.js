@@ -1,5 +1,7 @@
 // determining low-bandwidth via navigator.connection
 
+"use strict";
+
 // There are two iterations of the navigator.connection interface:
 
 // The first is present in Android 2.2+ and only in the Browser (not WebView)

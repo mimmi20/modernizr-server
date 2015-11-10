@@ -3,6 +3,8 @@
 // developer.mozilla.org/en/DOM/window.navigator.mozBattery
 // By: Paul Sayre
 
+"use strict";
+
 Modernizr.addTest('ps-lowbattery', function () {
     var minLevel = 0.20,
         battery = Modernizr.prefixed('battery', navigator);

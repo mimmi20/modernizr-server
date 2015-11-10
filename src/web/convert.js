@@ -2,7 +2,9 @@
  * Created by Thomas Müller on 24.10.2015.
  */
 
-var m = Modernizr, c = '', cx = '', reload = true;
+"use strict";
+
+var m = Modernizr, c = '', reload = true, cx;
 
 for (var f in m) {
     if (!m.hasOwnProperty(f)) {

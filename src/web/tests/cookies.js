@@ -1,6 +1,8 @@
 // by tauren
 // https://github.com/Modernizr/Modernizr/issues/191
 
+"use strict";
+
 Modernizr.addTest('ps-cookies', function () {
     // Quick test if browser has cookieEnabled host property
     if (navigator.cookieEnabled) {

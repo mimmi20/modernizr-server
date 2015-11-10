@@ -1,3 +1,5 @@
+"use strict";
+
 // should be modified to return an object... with different possible color depths set to true/false?
 // Select screen attributes
 Modernizr.addTest('pr-screenAttributes', function () {

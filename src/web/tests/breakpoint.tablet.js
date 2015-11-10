@@ -1,3 +1,5 @@
+"use strict";
+
 Modernizr.addTest('core-tablet', function () {
     if (Modernizr.mq('only screen and (min-width: 600px) and (orientation:portrait)')) {
         return true;

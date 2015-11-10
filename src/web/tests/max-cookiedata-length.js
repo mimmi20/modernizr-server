@@ -1,3 +1,5 @@
+"use strict";
+
 Modernizr.addTest('ps-max-cookiedata-length', function () {
     var enabled = false;
 

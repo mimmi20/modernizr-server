@@ -7,6 +7,9 @@
  *
  * Warning : positive Unicode support doesn't mean you can use it inside <title>, this seams more related to OS & Language packs
  */
+
+"use strict";
+
 Modernizr.addTest('ps-unicode', function () {
     var bool = false,
         missingGlyph = document.createElement('span'),
