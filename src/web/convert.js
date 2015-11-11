@@ -30,13 +30,13 @@ for (var f in m) {
             }
 
             if (typeof m[f][s] === 'boolean') {
-                c += '/' + s + ':' + (m[f][s] ? '1' : '0');
+                c += '/' + s + ':' + (m[f][s] ? 'true' : 'false');
             } else {
                 c += '/' + s + ':' + m[f][s];
             }
         }
     } else if (t === 'boolean') {
-        c += (m[f] ? '1' : '0');
+        c += (m[f] ? 'true' : 'false');
     } else {
         c += m[f];
     }
