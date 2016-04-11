@@ -1,10 +1,11 @@
 <?php
+
 chdir(dirname(__DIR__));
 
-$autoloadPaths = array(
+$autoloadPaths = [
     'vendor/autoload.php',
     '../../autoload.php',
-);
+];
 
 $foundVendorAutoload = false;
 foreach ($autoloadPaths as $path) {
@@ -22,13 +23,13 @@ if (!$foundVendorAutoload) {
 use Modernizr\Modernizr;
 
 if (null === Modernizr::getData()) {
-    print "<html><head><script type='text/javascript'>";
-    print Modernizr::buildJsCode() . "</script></head><body></body></html>";
+    echo "<html><head><script type='text/javascript'>";
+    echo Modernizr::buildJsCode() . '</script></head><body></body></html>';
     exit;
 }
 
-print 'The server knows:';
+echo 'The server knows:';
 foreach (Modernizr::getData() as $feature => $value) {
-    print "<br/> $feature: ";
+    echo "<br/> $feature: ";
     print_r($value);
 }

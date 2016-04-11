@@ -1,6 +1,6 @@
 <?php
 
-namespace Modernizr;
+namespace ModernizrServer;
 
 class Modernizr
 {
@@ -21,7 +21,7 @@ class Modernizr
      *
      * @var array
      */
-    private static $data = array();
+    private static $data = [];
 
     /**
      * returns the data
@@ -55,7 +55,7 @@ class Modernizr
             return self::$data;
         }
 
-        return null;
+        return;
     }
 
     /**
@@ -111,8 +111,8 @@ class Modernizr
     public static function buildConvertJs($key, $cookieExtra = '', $reload = true)
     {
         return str_replace(
-            array('###Modernizr###', '###EXTRA###', 'reload = true'),
-            array($key, $cookieExtra, ($reload ? 'reload = true' : 'reload = false')),
+            ['###Modernizr###', '###EXTRA###', 'reload = true'],
+            [$key, $cookieExtra, ($reload ? 'reload = true' : 'reload = false')],
             file_get_contents(__DIR__ . '/web/convert.js')
         );
     }
@@ -137,9 +137,20 @@ class Modernizr
                 foreach (explode('/', substr($value, 1)) as $subFeature) {
                     list($subName, $subValue) = explode(':', $subFeature, 2);
 
-                    $valueObject->$subName = $subValue;
+                    if ('t' === $subValue) {
+                        $valueObject->$subName = true;
+                    } elseif ('f' === $subValue) {
+                        $valueObject->$subName = false;
+                    } else {
+                        $valueObject->$subName = $subValue;
+                    }
                 }
+
                 $data->$name = $valueObject;
+            } elseif ('t' === $value) {
+                $data->$name = true;
+            } elseif ('f' === $value) {
+                $data->$name = false;
             } else {
                 $data->$name = $value;
             }

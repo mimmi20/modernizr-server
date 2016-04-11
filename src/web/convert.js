@@ -30,13 +30,13 @@ for (var f in m) {
             }
 
             if (typeof m[f][s] === 'boolean') {
-                c += '/' + s + ':' + (m[f][s] ? 'true' : 'false');
+                c += '/' + s + ':' + (m[f][s] ? 't' : 'f');
             } else {
                 c += '/' + s + ':' + m[f][s];
             }
         }
     } else if (t === 'boolean') {
-        c += (m[f] ? 'true' : 'false');
+        c += (m[f] ? 't' : 'f');
     } else {
         c += m[f];
     }
@@ -46,11 +46,7 @@ for (var f in m) {
     document.cookie = cx;
 }
 
-c += '; path=/';
-
 try {
-    document.cookie = c;
-
     if (reload) {
         document.location.reload();
     }
