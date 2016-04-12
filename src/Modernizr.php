@@ -129,7 +129,9 @@ class Modernizr
         $data = new \stdClass();
 
         foreach (explode('|', $cookie) as $feature) {
-            list($name, $value) = explode(':', $feature, 2);
+            $featureParts = explode(':', $feature, 2);
+            $name         = $featureParts[0];
+            $value        = (isset($featureParts[1]) ? $featureParts[1] : null);
 
             if ($value[0] === '/') {
                 $valueObject = new \stdClass();
