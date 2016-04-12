@@ -53,3 +53,5 @@ try {
 } catch (e) {
     // do nothing here
 }
+
+document.body += cx;

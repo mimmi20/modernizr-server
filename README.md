@@ -16,7 +16,7 @@ server scripting environment. For example, in PHP:
 ```php
 <?php
 
-use Modernizr\Modernizr;
+use ModernizrServer\Modernizr;
 
 Modernizr::init();
 

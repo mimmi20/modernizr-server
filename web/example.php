@@ -20,7 +20,7 @@ if (!$foundVendorAutoload) {
     throw new Exception('Could not find autoload path in any of the searched locations');
 }
 
-use Modernizr\Modernizr;
+use ModernizrServer\Modernizr;
 
 if (null === Modernizr::getData()) {
     echo "<html><head><script type='text/javascript'>";
