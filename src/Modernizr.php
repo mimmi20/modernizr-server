@@ -5,12 +5,6 @@ namespace ModernizrServer;
 class Modernizr
 {
     /**
-     * the location of the modernizr.js file
-     * @var string
-     */
-    private static $modernizr_js = '../modernizr.js/modernizr.js';
-
-    /**
      * the used session key
      * @var string
      */
@@ -55,7 +49,7 @@ class Modernizr
             return self::$data;
         }
 
-        return;
+        return null;
     }
 
     /**
@@ -81,9 +75,9 @@ class Modernizr
      */
     public static function buildJs()
     {
-        $js  = file_get_contents(__DIR__ . '/' . self::$modernizr_js);
+        $js  = file_get_contents(__DIR__ . '/../web/modernizr-custom-3.3.1.js');
 
-        $sourceDirectory = __DIR__ . '/web/tests/';
+        $sourceDirectory = __DIR__ . '/../web/tests/';
 
         $iterator = new \RecursiveDirectoryIterator($sourceDirectory);
 
@@ -97,6 +91,24 @@ class Modernizr
         }
 
         return $js;
+    }
+
+    public static function collectJsFiles()
+    {
+        $files = ['/web/modernizr-custom-3.3.1.js'];
+
+        $sourceDirectory = __DIR__ . '/../web/tests/';
+
+        $iterator = new \RecursiveDirectoryIterator($sourceDirectory);
+
+        foreach (new \RecursiveIteratorIterator($iterator) as $file) {
+            /** @var $file \SplFileInfo */
+            if (!$file->isFile() || $file->getExtension() !== 'js') {
+                continue;
+            }
+var_dump($file);
+            $js .= file_get_contents($file->getPathname());
+        }
     }
 
     /**

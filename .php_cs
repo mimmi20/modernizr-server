@@ -29,7 +29,6 @@ return Symfony\CS\Config\Config::create()
             'concat_with_spaces',
             'duplicate_semicolon',
             'elseif',
-            'empty_return',
             'encoding',
             'eof_ending',
             'extra_empty_lines',
