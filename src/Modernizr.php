@@ -75,19 +75,10 @@ class Modernizr
      */
     public static function buildJs()
     {
-        $js  = file_get_contents(__DIR__ . '/../web/modernizr-custom-3.3.1.js');
+        $js = '';
 
-        $sourceDirectory = __DIR__ . '/../web/tests/';
-
-        $iterator = new \RecursiveDirectoryIterator($sourceDirectory);
-
-        foreach (new \RecursiveIteratorIterator($iterator) as $file) {
-            /** @var $file \SplFileInfo */
-            if (!$file->isFile() || $file->getExtension() !== 'js') {
-                continue;
-            }
-
-            $js .= file_get_contents($file->getPathname());
+        foreach (self::collectJsFiles() as $file) {
+            $js .= file_get_contents(__DIR__ . '/../web' . $file);
         }
 
         return $js;
@@ -95,7 +86,7 @@ class Modernizr
 
     public static function collectJsFiles()
     {
-        $files = ['/web/modernizr-custom-3.3.1.js'];
+        $files = ['/modernizr-custom-3.3.1.js'];
 
         $sourceDirectory = __DIR__ . '/../web/tests/';
 
@@ -106,9 +97,11 @@ class Modernizr
             if (!$file->isFile() || $file->getExtension() !== 'js') {
                 continue;
             }
-var_dump($file);
-            $js .= file_get_contents($file->getPathname());
+
+            $files[] = '/tests/' . $file->getFilename();
         }
+
+        return $files;
     }
 
     /**
@@ -125,7 +118,7 @@ var_dump($file);
         return str_replace(
             ['###Modernizr###', '###EXTRA###', 'reload = true'],
             [$key, $cookieExtra, ($reload ? 'reload = true' : 'reload = false')],
-            file_get_contents(__DIR__ . '/web/convert.js')
+            file_get_contents(__DIR__ . '/../web/convert.js')
         );
     }
 
