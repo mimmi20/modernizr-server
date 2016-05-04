@@ -1,0 +1,1 @@
+    '$subpropertykey': (m['$property'].hasOwnProperty('$subproperty')) ? convert(m['$property']['$subproperty']) : 'u'

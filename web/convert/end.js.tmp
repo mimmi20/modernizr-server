@@ -1,0 +1,11 @@
+};
+
+document.cookie = '###Modernizr######EXTRA###=' + JSON.stringify(cx) + '; path=/';
+
+try {
+    if (reload) {
+        document.location.reload();
+    }
+} catch (e) {
+    // do nothing here
+}
